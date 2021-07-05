@@ -1,8 +1,14 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne } from "typeorm";
+import {
+    Entity,
+    PrimaryColumn,
+    Column,
+    CreateDateColumn,
+    JoinColumn,
+    ManyToOne,
+} from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Tag } from "./Tag";
 import { User } from "./User";
-
 
 @Entity("compliments")
 class Compliment {
@@ -14,14 +20,17 @@ class Compliment {
 
     @JoinColumn({ name: "user_sender" })
     @ManyToOne(() => User)
-    user_receiver: string;
+    userSender: User;
 
     @Column()
-    tag_id: string;
+    user_receiver: string;
 
     @JoinColumn({ name: "user_receiver" })
     @ManyToOne(() => User)
     userReceiver: User;
+
+    @Column()
+    tag_id: string;
 
     @JoinColumn({ name: "tag_id" })
     @ManyToOne(() => Tag)
@@ -31,7 +40,7 @@ class Compliment {
     message: string;
 
     @CreateDateColumn()
-    create_at: Date;
+    created_at: Date;
 
     constructor() {
         if (!this.id) {
@@ -40,4 +49,4 @@ class Compliment {
     }
 }
 
-export { Compliment }
+export { Compliment };

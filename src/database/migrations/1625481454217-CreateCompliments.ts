@@ -1,8 +1,11 @@
-import { query } from "express";
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
+import {
+    MigrationInterface,
+    QueryRunner,
+    Table,
+    TableForeignKey,
+} from "typeorm";
 
-export class CreateCompliments1625481454217 implements MigrationInterface {
-
+export class CreateCompliments1624302072284 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
@@ -16,25 +19,24 @@ export class CreateCompliments1625481454217 implements MigrationInterface {
                     {
                         name: "user_sender",
                         type: "uuid",
-
                     },
                     {
                         name: "user_receiver",
-                        type: "uuid"
+                        type: "uuid",
                     },
                     {
                         name: "tag_id",
-                        type: "uuid"
+                        type: "uuid",
                     },
                     {
                         name: "message",
-                        type: "varchar"
+                        type: "varchar",
                     },
                     {
                         name: "created_at",
                         type: "timestamp",
                         default: "now()",
-                    }
+                    },
                 ],
                 foreignKeys: [
                     {
@@ -43,7 +45,7 @@ export class CreateCompliments1625481454217 implements MigrationInterface {
                         referencedColumnNames: ["id"],
                         columnNames: ["user_sender"],
                         onDelete: "SET NULL",
-                        onUpdate: "SET NULL"
+                        onUpdate: "SET NULL",
                     },
                     {
                         name: "FKUserReceiverCompliments",
@@ -61,26 +63,24 @@ export class CreateCompliments1625481454217 implements MigrationInterface {
                         onDelete: "SET NULL",
                         onUpdate: "SET NULL",
                     },
-
                 ],
             })
         );
 
-        /* await queryRunner.createForeignKey(
-             "compliments",
-             new TableForeignKey({
-                 name: "FKUserSenderCompliments",
-                 referencedTableName: "users",
-                 referencedColumnNames: ["id"],
-                 columnNames: ["user_sender"],
-                 onDelete: "SET NULL",
-                 onUpdate: "SET NULL"
-             })
-         )*/
+        // await queryRunner.createForeignKey(
+        //     "compliments",
+        //     new TableForeignKey({
+        //         name: "FKUserSenderCompliments",
+        //                 referencedTableName: "users",
+        //                 referencedColumnNames: ["id"],
+        //                 columnNames: ["user_sender"],
+        //                 onDelete: "SET NULL",
+        //                 onUpdate: "SET NULL"
+        //     })
+        // )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("compliments");
     }
-
 }
