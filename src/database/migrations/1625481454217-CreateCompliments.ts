@@ -60,11 +60,11 @@ export class CreateCompliments1625481454217 implements MigrationInterface {
                         columnNames: ["tag_id"],
                         onDelete: "SET NULL",
                         onUpdate: "SET NULL",
-                    }
+                    },
 
-                ]
+                ],
             })
-        )
+        );
 
         /* await queryRunner.createForeignKey(
              "compliments",
